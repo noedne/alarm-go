@@ -9,10 +9,12 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="win32rs.alarm_go.AlarmActivity">
 
-    <Chronometer
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/chronometer"
+        android:text="FILL"
+        android:textSize="96dp"
+        android:id="@+id/timer"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:onClick="timeTapped"/>

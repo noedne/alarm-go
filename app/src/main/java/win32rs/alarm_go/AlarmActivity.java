@@ -5,13 +5,21 @@ import android.content.ComponentName;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.CountDownTimer;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Chronometer;
+import android.widget.TextView;
 
-public class AlarmActivity extends AppCompatActivity {
+import java.io.IOException;
+
+public class AlarmActivity extends AppCompatActivity{
     MediaPlayer mp;
+    CountDownTimer cdt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +45,27 @@ public class AlarmActivity extends AppCompatActivity {
         }
         mp= MediaPlayer.create(this, alarmUri);
         mp.setLooping(true);
+        mp.setVolume(1,1);
         mp.start();
+        final TextView timer = (TextView) findViewById(R.id.timer);
+        timer.setText("Shh.");
+        cdt = new CountDownTimer(5000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                timer.setText(""+ millisUntilFinished / 1000);
+            }
+
+            public void onFinish() {
+                mp.start();
+                timer.setText("Shh.");
+            }
+        };
     }
     public void timeTapped(View view){
-        mp.stop();
-        mp.release();
+        cdt.cancel();
+        cdt.start();
+        mp.pause();
+
     }
+
 }
