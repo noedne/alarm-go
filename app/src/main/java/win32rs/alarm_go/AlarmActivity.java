@@ -53,9 +53,9 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
 
             public void onTick(long millisUntilFinished) {
                 //timer.setText("" + millisUntilFinished / 1000);
-                Log.d("AA","OnTick precheck");
+                Log.d("AA", "OnTick precheck");
                 if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    Log.d("AA","onTick didn't get a perm");
+                    Log.d("AA", "onTick didn't get a perm");
                     // TODO: Consider calling
                     //    ActivityCompat#requestPermissions
                     // here to request the missing permissions, and then overriding
@@ -65,30 +65,38 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
                     // for ActivityCompat#requestPermissions for more details.
                     return;
                 }
-                Log.d("AA","onTick got past check");
-                Location curLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-                Log.d("AA538","curLoc"+curLocation.toString());
-                timer.setText("dist "+curLocation.distanceTo(mLastLocation));
-                if(curLocation.distanceTo(mLastLocation)<=10){
-                    timer.setText("CONGRATIONS YOU DON IT");
-                    AlarmActivity.stopAlarm();
+                timer.setText("" + millisUntilFinished / 1000);
 
-
-                    this.cancel();
-                }
             }
+
 
             public void onFinish() {
                 mp.start();
-                //timer.setText("Shh.");
+                timer.setText("Shh.");
             }
         };
+
     }
 
     public void timeTapped(View view) {
+        if(((TextView) view).getText().equals("Good Morn :)")){
+            return;
+        }
         cdt.cancel();
-        cdt.start();
         mp.pause();
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            return;
+        }
+        Location curLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        //timer.setText("dist "+curLocation.distanceTo(mLastLocation));
+
+        if(curLocation.distanceTo(mLastLocation)>=10){
+            ((TextView) view).setText("Good Morn :)");
+            mp.release();
+        } else {
+            cdt.start();
+        }
 
     }
 
@@ -127,10 +135,5 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
     @Override
     public void onConnectionSuspended(int i) {
 
-    }
-
-    public static void stopAlarm(){
-        mp.pause();
-        mp.release();
     }
 }
