@@ -64,20 +64,22 @@ public class SettingsActivity extends AppCompatActivity implements TimePicker.On
     }
 
     public void setAlarm(int h, int m){
+        alarmManager.cancel(pendingIntent);
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, h);
         calendar.set(Calendar.MINUTE, m);
         calendar.set(Calendar.SECOND, 0);
         Intent myIntent = new Intent(SettingsActivity.this, AlarmReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(SettingsActivity.this, 0, myIntent, 0);
+        Log.d("SA","set alarm");
         alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
     }
 
     @Override
     public void onTimeChanged(TimePicker timePicker, int h, int m) {
-        if(sw.isChecked()) {
+        /*if(sw.isChecked()) {
             setAlarm(h, m);
-        }
+        }*/
         SharedPreferences sp = this.getSharedPreferences("win32rs.alarm_go.prefs",this.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.putInt("hour",h);
