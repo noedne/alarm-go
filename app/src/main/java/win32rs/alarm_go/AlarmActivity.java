@@ -39,8 +39,8 @@ import android.widget.TextView;
 
 import java.io.IOException;
 
-public class AlarmActivity extends FragmentActivity
-        implements OnConnectionFailedListener {
+public class AlarmActivity extends AppCompatActivity
+        /*implements OnConnectionFailedListener*/ {
     private GoogleApiClient mGoogleApiClient;
     MediaPlayer mp;
     Location mLastLocation, mCurrentLocation;
@@ -51,9 +51,9 @@ public class AlarmActivity extends FragmentActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this /* FragmentActivity */,
-                        this /* OnConnectionFailedListener */)
+        /*mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this /* FragmentActivity * /,
+                        this /* OnConnectionFailedListener * /)
                 .addApi(Drive.API)
                 .addScope(Drive.SCOPE_FILE)
                 .build();
@@ -62,7 +62,7 @@ public class AlarmActivity extends FragmentActivity
                     .addOnConnectionFailedListener(this)
                     .addApi(LocationServices.API)
                     .build();
-        }
+        }*/
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm);
 
@@ -70,15 +70,7 @@ public class AlarmActivity extends FragmentActivity
         //SettingsActivity inst = SettingsActivity.instance();
         //inst.setAlarmText("Alarm! Wake up! Waaake up!");
 
-        //this will sound the alarm tone
-        //this will sound the alarm once, if you wish to
-        //raise alarm in loop continuously then use MediaPlayer and setLooping(true)
-        /*Uri alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-        if (alarmUri == null) {
-            alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        }
-        Ringtone ringtone = RingtoneManager.getRingtone(context, alarmUri);
-        ringtone.play();*/
+
         Uri alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
         if (alarmUri == null) {
             alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -88,7 +80,7 @@ public class AlarmActivity extends FragmentActivity
         mp.setVolume(1,1);
         mp.start();
         final TextView timer = (TextView) findViewById(R.id.timer);
-        timer.setText("Shh.");
+        //timer.setText("Shh.");
         cdt = new CountDownTimer(5000, 1000) {
 
             public void onTick(long millisUntilFinished) {
@@ -103,7 +95,7 @@ public class AlarmActivity extends FragmentActivity
     }
 
     protected void onStart() {
-        mGoogleApiClient.connect();
+//        mGoogleApiClient.connect();
         super.onStart();
     }
 
@@ -129,13 +121,13 @@ public class AlarmActivity extends FragmentActivity
     }
 
     protected void onStop() {
-        mGoogleApiClient.disconnect();
+//        mGoogleApiClient.disconnect();
         super.onStop();
     }
 
     public void timeTapped(View view){
         mp.pause();
-        Log.d("geo",""+checkDistance());
+        //Log.d("geo",""+checkDistance());
         cdt.cancel();
         cdt.start();
     }
@@ -144,7 +136,7 @@ public class AlarmActivity extends FragmentActivity
 
     }
 
-    @Override
+    //@Override
     public void onConnectionFailed(ConnectionResult result) {
         // An unresolvable error has occurred and a connection to Google APIs
         // could not be established. Display an error message, or handle
