@@ -43,8 +43,8 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public void onToggleClicked(View view) {
-        if (((ToggleButton) view).isChecked()) {
-            Log.d("MyActivity", "Alarm On");
+        if (((Switch) view).isChecked()) {
+            //Log.d("MyActivity", "Alarm On");
             Calendar calendar = Calendar.getInstance();
             calendar.set(Calendar.HOUR_OF_DAY, alarmTimePicker.getCurrentHour());
             calendar.set(Calendar.MINUTE, alarmTimePicker.getCurrentMinute());
@@ -54,7 +54,7 @@ public class SettingsActivity extends AppCompatActivity {
         } else {
             alarmManager.cancel(pendingIntent);
             setAlarmText("");
-            Log.d("MyActivity", "Alarm Off");
+            //Log.d("MyActivity", "Alarm Off");
         }
     }
 
