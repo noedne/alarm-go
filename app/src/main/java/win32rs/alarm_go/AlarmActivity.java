@@ -27,8 +27,8 @@ public class AlarmActivity extends AppCompatActivity{
         setContentView(R.layout.activity_alarm);
 
         //this will update the UI with message
-        SettingsActivity inst = SettingsActivity.instance();
-        inst.setAlarmText("Alarm! Wake up! Waaake up!");
+        //SettingsActivity inst = SettingsActivity.instance();
+        //inst.setAlarmText("Alarm! Wake up! Waaake up!");
 
         //this will sound the alarm tone
         //this will sound the alarm once, if you wish to
