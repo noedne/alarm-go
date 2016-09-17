@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.ToggleButton;
 import java.util.Calendar;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -44,7 +43,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     public void onToggleClicked(View view) {
         if (((Switch) view).isChecked()) {
-            //Log.d("MyActivity", "Alarm On");
+            Log.d("MyActivity", "Alarm On");
             Calendar calendar = Calendar.getInstance();
             calendar.set(Calendar.HOUR_OF_DAY, alarmTimePicker.getCurrentHour());
             calendar.set(Calendar.MINUTE, alarmTimePicker.getCurrentMinute());
