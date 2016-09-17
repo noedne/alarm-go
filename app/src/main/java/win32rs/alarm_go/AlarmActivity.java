@@ -14,7 +14,6 @@ import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-<<<<<<< HEAD
 import android.os.Build;
 import android.util.Log;
 import android.view.View;
@@ -33,6 +32,12 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.drive.Drive;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResult;
+import android.util.Log;
+import android.view.View;
+import android.widget.Chronometer;
+import android.widget.TextView;
+
+import java.io.IOException;
 
 public class AlarmActivity extends FragmentActivity
         implements OnConnectionFailedListener {
@@ -41,18 +46,8 @@ public class AlarmActivity extends FragmentActivity
     Location mLastLocation, mCurrentLocation;
     LocationSettingsRequest.Builder builder;
     PendingResult<LocationSettingsResult> result;
-=======
-import android.util.Log;
-import android.view.View;
-import android.widget.Chronometer;
-import android.widget.TextView;
 
-import java.io.IOException;
-
-public class AlarmActivity extends AppCompatActivity{
-    MediaPlayer mp;
     CountDownTimer cdt;
->>>>>>> ef63af52e0a4599625859974e85837847716fe9d
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,10 +134,10 @@ public class AlarmActivity extends AppCompatActivity{
     }
 
     public void timeTapped(View view){
-<<<<<<< HEAD
+        mp.pause();
         Log.d("geo",""+checkDistance());
-        mp.stop();
-        mp.release();
+        cdt.cancel();
+        cdt.start();
     }
 
     public void onConnectionFailedListener(ConnectionResult result) {
@@ -156,13 +151,7 @@ public class AlarmActivity extends AppCompatActivity{
         // the failure silently
 
         // ...
-    }
-=======
-        cdt.cancel();
-        cdt.start();
-        mp.pause();
 
     }
 
->>>>>>> ef63af52e0a4599625859974e85837847716fe9d
 }
