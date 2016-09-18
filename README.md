@@ -8,12 +8,11 @@ Submission for HackCMU 2016.
 
 **Video introduction:**
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/4kuTZAU4XDo" frameborder="0" allowfullscreen></iframe>
+[![Video introduction](https://img.youtube.com/vi/4kuTZAU4XDo/0.jpg)]
+(https://youtube.com/watch?v=4kuTZAU4XDo)
 
 Full details [here](http://devpost.com/software/alarm-go).
 
 ---
 
-Bonus cameo:
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/OuxH_ONhX8g?t=25s" frameborder="0" allowfullscreen></iframe> 
+[Bonus cameo](https://youtu.be/OuxH_ONhX8g?t=25s) 
